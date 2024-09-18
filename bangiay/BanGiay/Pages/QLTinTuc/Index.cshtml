@@ -1,0 +1,55 @@
+﻿@page
+@model BanGiay.Pages.QLTinTuc.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lý tin tức</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TinTuc[0].Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinTuc[0].NoiDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinTuc[0].Anh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinTuc[0].NgayDang)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TinTuc) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+                <td>
+                    <img src="~/client/img/blog/@Url.Content(item.Anh)" alt="Ảnh" style="height: 150px; width: 150px;" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDang)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
